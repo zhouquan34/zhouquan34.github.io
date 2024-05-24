@@ -1,0 +1,22 @@
+journal{
+    color: navy;
+    font-style: italic;
+    font-weight: normal;
+  }
+  hl {
+    color: black;
+    font-weight: bold;
+  }
+  ao {
+    color: blue;
+    font-weight: bold
+  }
+  cat {
+    color: maroon;
+  }
+  a {
+    color: blue;
+    font-weight: normal;
+    text-decoration: none;
+  }
+  
