@@ -156,7 +156,7 @@ const publications = [
       { name: "Q. Zhou", me: true }  
     ],
     links: [
-       {lable: "arXiv", url: "https://arxiv.org/abs/2505.15059"} 
+       {label: "arXiv", url: "https://arxiv.org/abs/2505.15059"} 
     ],
     categories: ["MCMC"],
     keywords: [
