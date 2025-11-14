@@ -1,202 +1,234 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127401279-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-127401279-1');
-</script>
-<meta name="viewport" content="width=device-width, initial-scale=1"> 
-<meta http-equiv="refresh" content="600"> 
-<link rel="stylesheet" href="css/w3.css">
-<link rel="stylesheet" href="css/font-awesome.min.css"> 
-<link rel="stylesheet" href="css/style.css">
-<title>Quan Zhou at TAMU Statistics</title> 
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127401279-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127401279-1');
+  </script>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="600">
 
+  <link rel="stylesheet" href="css/w3.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <title>Quan Zhou at TAMU Statistics</title>
 
 <style>
-  me{
-    font-weight: bold;
-  }
-  key{
-    font-style: normal;
-  }
-  .arxiv{
+  me { font-weight: bold; }
+  stu { text-decoration: underline; }
+  key { font-style: normal; }
+
+  .arxiv {
     color: maroon;
     font-size: smaller;
     background-color: #F0F0F0;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    margin-left: 3px;
-    margin-right: 3px; 
-    font-family: monospace; 
+    padding: 2px 5px;
+    margin: 0 3px;
+    font-family: monospace;
   }
+  .keyw{
+    color: black;
+    font-size: smaller;
+    background-color: #F0F0F0;
+    padding: 2px 5px;
+    margin: 0 3px;
+    font-family: monospace;
+  }
+  .note { font-style: italic; color: rgba(0, 136, 255, 0.961) }
+  
   journal {
-    color: navy; 
-    font-weight: normal;
+    color: navy;
     font-style: italic;
   }
-  a{
-    color: navy;
-    font-weight: normal;
+  a {
+    color: black;
     text-decoration: none;
   }
-  hl {
-    color: navy;
-    font-weight: normal;
-  }
-  ao {
+  ao { 
     color: blue; 
     font-weight: normal;
   }
-  cat {
+  cat { 
     color: darkslateblue; 
   }
-  stu {
-    text-decoration: underline;
-  }
-  .publication{
-    line-height: 2; 
-    margin-top: 20px; 
+
+  .publication {
+    line-height: 1.8;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px; 
+    gap: 15px;
   }
 </style>
 </head>
 
 <body>
+
+<!-- NAV BAR -->
 <div class="w3-top">
   <div class="w3-bar w3-black w3-card">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+       href="javascript:void(0)" onclick="toggleNav()"><i class="fa fa-bars"></i></a>
     <a href="index.html" class="w3-bar-item w3-button w3-padding-large">HOME</a>
     <a href="papers.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">RESEARCH</a>
     <a href="teach.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">TEACHING</a>
     <a href="bio.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">MISC</a>
-    </div>
-</div>
-
-<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-  <a href="papers.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">RESEARCH</a>
-  <a href="teach.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TEACHING</a>  
-  <a href="bio.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MISC</a>
-</div>
-
-
-<div class="w3-row" style="max-width:1600px;margin-top:80px;margin-left:30px;">
-  Last update: May, 2024. Recent slides available at the <a href="index.html">homepage</a>.<br><br>
-  Search publications by area or keyword (e.g. "mcmc", "variable selection", "optimal stopping", "structure learning") <br>
-  <input type="text" id="searchBox" placeholder="Enter search term...">
-  <button onclick="searchPublications()" style="margin-left:-10px;"><i class="fa fa-search"></i></button> &nbsp&nbsp
-  <button onclick="showAllPublications()">Show All</button>
-  <div class="w3-container" style="margin-top:30px">
-  <ao>[ao]</ao>: &nbsp&nbsp&nbsp&nbsp alphabetical ordering of authors <br>
-  <stu>name</stu>: &nbsp&nbsp graduate students supervised by me <br>
-  name*: &nbsp equal contribution <br>
-  <cat>[area]</cat>: &nbsp main areas of the work 
   </div>
-  
-  <div id="results"></div>
 </div>
- 
+
+<div id="navDemo"
+     class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top"
+     style="margin-top:46px">
+  <a href="papers.html" class="w3-bar-item w3-button" onclick="toggleNav()">RESEARCH</a>
+  <a href="teach.html" class="w3-bar-item w3-button" onclick="toggleNav()">TEACHING</a>
+  <a href="bio.html" class="w3-bar-item w3-button" onclick="toggleNav()">MISC</a>
+</div>
+
+
+<!-- MAIN CONTENT -->
+<div class="w3-row" style="max-width:1600px;margin-top:80px;margin-left:30px;">
+
+  Below is a list of selected publications and preprints (last update: Nov 2025)
+  <br><br>
+
+  Search publications by area or keyword (e.g. "mcmc", "optimal stopping", "graphical model") <br> 
+  <input type="text" id="searchBox" placeholder="Enter search term...">
+  <button onclick="searchPublications()" style="margin-left:-10px;"><i class="fa fa-search"></i></button>
+  &nbsp;&nbsp;
+  <button onclick="showAllPublications()">Show All</button>
+
+  <div class="w3-container" style="margin-top:30px">
+    <ao>[ao]</ao>: alphabetical ordering of authors <br>
+    <stu>name</stu>: graduate students supervised by me <br>
+    name*: equal contribution <br>
+    <cat>[area]</cat>: main areas of the work
+  </div>
+
+  <div id="results" style="margin-top:20px;"></div>
+</div>
+
 
 <div class="w3-container w3-center" style="max-width:1200px;margin-top:100px;font-size:10px;">
-&copy Quan Zhou 2024; Powered by w3.css 
+  &copy; Quan Zhou 2024; Powered by w3.css
 </div>
+
+
+<!-- LOAD PUBLICATION DATA -->
+<script src="papers-data.js"></script>
 
 
 <script>
-  // Used to toggle the menu on small screens when clicking on the menu button
-  function myFunction() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-      x.className += " w3-show";
-    } else { 
-      x.className = x.className.replace(" w3-show", "");
+/* NAV */
+function toggleNav() {
+  const x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") === -1)
+    x.className += " w3-show";
+  else x.className = x.className.replace(" w3-show", "");
+}
+
+
+/* RENDERING LOGIC */
+
+function renderAuthors(authors) {
+  return authors.map(a => {
+    let name = a.name;
+    let decorations = [];
+
+    if (a.me)      decorations.push(open => `<me>${open}</me>`, close => close);
+    if (a.student) decorations.push(open => `<stu>${open}</stu>`, close => close);
+    if (a.equal)   decorations.push(open => `${open}*`, close => close);
+    if (a.ao)      decorations.push(open => `${open} <ao>[ao]</ao>`, close => close);
+
+    if (decorations.length === 0) {
+      return name;
     }
-  }
- 
-  const publications = [
-    '<stu> H. Chang </stu> and  <me>Q. Zhou</me> "Dimension-free relaxation times of informed MCMC samplers on discrete spaces." <br>  <hl>Preprint </hl>  <a class="arxiv" href="https://arxiv.org/abs/2404.03867" target="_blank">arXiv</a>  <cat> [mcmc] </cat>  <br>  Keywords: <key>drift condition, informed proposal, mixing time, multicommodity flow, restricted spectral gap, spectral gap, stochastic block model, variable selection </key> ', 
-		'<stu> G. Li </stu>, A. Smith and <me>Q. Zhou</me> "Importance is important: a guide to informed importance tempering methods." <br>  <hl>Preprint </hl>  <a class="arxiv" href="https://arxiv.org/abs/2304.06251" target="_blank">arXiv</a>  <cat> [mcmc] </cat>  <br>  Keywords: <key>importance sampling, informed proposals, multiple-try Metropolis, pseudo-marginal MCMC, record linkage, spectral gap, simulated tempering, variable selection </key> ', 
-		'T. De Angelis, <stu>J. Garg</stu> and <me>Q. Zhou </me> <ao> [ao]</ao> "A quickest detection problem with false negatives." <br>  <hl>Preprint </hl>  <a class="arxiv" href="https://arxiv.org/abs/2210.01844" target="_blank">arXiv</a>  <cat> [optimal stopping] </cat>  <br>  Keywords: <key>Brownian motion, explicit solution, free-boundary problem, optimal multiple stopping, recursive optimal stopping </key> ', 
-		'X. Dong, D. Mott, <stu>J. Garg,</stu> <me> Q. Zhou </me>, J. Sunoy and B. McKnight "Rapid measurement and statistical ranking of leaf drought tolerant capacity in cotton." <br>  <hl>Preprint </hl>  <a class="arxiv" href="https://www.biorxiv.org/content/10.1101/2023.08.30.555618v1" target="_blank">bioRxiv</a>  <cat> [applied stat] [soil science] </cat>  <br>  Keywords: <key>Bayesian hierarchical modeling, joint ranking estimation, MCMC sampling, Metropolis-within-Gibbs </key> ', 
-		'<stu>J. Garg</stu>, X. Zhang and <me>Q. Zhou</me> (2024) "Soft-constrained Schrodinger bridge: a stochastic-control approach." <br>  <journal>AISTATS </journal>  <a class="arxiv" href="https://arxiv.org/abs/2403.01717" target="_blank">arXiv</a>  <cat> [stochastic control] [diffusion model] </cat>  <br>  Keywords: <key>generative model, Kullback-Leibler divergence, image denoising, importance sampling, iterative proportional fitting, score matching, time-series Schrodinger bridge </key> ', 
-		'P. Ernst, L. C. G. Rogers and <me> Q. Zhou </me> <ao> [ao]</ao> (2024) "The distribution of Yule\'s nonsense correlation." <br>  <journal>Bernoulli </journal>  <a class="arxiv" href="https://arxiv.org/abs/1909.02546" target="_blank">arXiv</a>  <cat> [stat theory] </cat>  <br>  Keywords: <key>Brownian motion, central limit theorem, empirical correlation, moment of ratio, moment-generating function, Ornstein-Uhlenbeck process </key> ', 
-		'<stu>H. Chang</stu>, J. Cai and <me> Q. Zhou </me> (2023) "Order-based structure learning without score equivalence." <br>  <journal>Biometrika </journal>  <a class="arxiv" href="https://academic.oup.com/biomet/advance-article-abstract/doi/10.1093/biomet/asad052/7261492?redirectedFrom=fulltext" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/2202.05150" target="_blank">arXiv</a>  <cat> [mcmc] [structure learning] [high-dimensional stat] </cat>  <br>  Keywords: <key>empirical Bayes, equal error variance, non-decomposable score, posterior consistency, score equivalence, top-down algorithm </key> ', 
-		'<stu>G. Li</stu> and <me> Q. Zhou </me> (2023) "Bayesian multi-task variable selection with an application to differential DAG analysis." <br>  <journal>Journal of Computational and Graphical Statistics </journal>  <a class="arxiv" href="https://www.tandfonline.com/doi/abs/10.1080/10618600.2023.2252023" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/2206.14303" target="_blank">arXiv</a>  <cat> [mcmc] [structure learning] [variable selection] </cat>  <br>  Keywords: <key>joint structure learning, multi-task learning, order-based MCMC, posterior consistency, sum of single effects model (SuSiE) </key> ', 
-		'<me>Q. Zhou</me> and <stu>H. Chang</stu> (2023) "Complexity analysis of Bayesian learning of high-dimensional DAG models and their equivalence classes." <br>  <journal>Annals of Statistics </journal>  <a class="arxiv" href="https://projecteuclid.org/journals/annals-of-statistics/volume-51/issue-3/Complexity-analysis-of-Bayesian-learning-of-high-dimensional-DAG-models/10.1214/23-AOS2280.full" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/2101.04084" target="_blank">arXiv</a>  <cat> [mcmc] [structure learing] [high-dimensional stat] </cat>  <br>  Keywords: <key>greedy equivalence search (GES), Metropolis-Hastings, mixing time, path method, multicommodity flow, posterior consistency </key> ', 
-		'<stu>H. Chang</stu>* (NeurIPS Scholar Award), C. Lee*, Z. T. Luo, H. Sang and <me>Q. Zhou</me> (2022) "Rapidly mixing multiple-try Metropolis algorithms for model selection problems." <br>  <journal>NeurIPS (oral) </journal>  <a class="arxiv" href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/a600cdf3a53f93bcb85cb37343a8d831-Abstract-Conference.html" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/2207.00689" target="_blank">arXiv</a>  <cat> [mcmc] </cat>  <br>  Keywords: <key>mixing time, multiple-try Metropolis, path method, stochastic block model, variable selection </key> ', 
-		'<me>Q. Zhou</me>, J. Yang, D. Vats, G. Roberts and J. Rosenthal (2022) "Dimension-free mixing for high-dimensional Bayesian variable selection." <br>  <journal>Journal of the Royal Statistical Society: Series B </journal>  <a class="arxiv" href="https://academic.oup.com/jrsssb/article/84/5/1751/7072929" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/2105.05719" target="_blank">arXiv</a>  <a class="arxiv" href="https://github.com/zhouquan34/LIT-MH" target="_blank">github</a>  <cat> [mcmc] [variable selection] </cat>  <br>  Keywords: <key>coupling, drift condition, informed proposal, LIT-MH, Metropolis-Hastings, mixing time </key> ', 
-		'<me>Q. Zhou</me> and A. Smith (2022) "Rapid convergence of informed importance tempering." <br>  <journal>AISTATS (oral) </journal>  <a class="arxiv" href="https://proceedings.mlr.press/v151/zhou22e.html" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/2107.10827" target="_blank">arXiv</a>  <a class="arxiv" href="https://github.com/zhouquan34/IIT" target="_blank">github</a>  <a class="arxiv" href="https://virtual.aistats.org/virtual/2022/oral/3617" target="_blank">video</a>  <cat> [mcmc] </cat>  <br>  Keywords: <key>decomposable Markov chains, importance sampling, informed proposal, multimodal sampling, path method, spectral gap </key> ', 
-		'<me>Q. Zhou</me> and S. Zhou <ao> [ao]</ao> (2021) Discussion on "Multilevel linear models, Gibbs samplers and multigrid decompositions" by Giacomo Zanella and Gareth Roberts.<br>  <journal>Bayesian Analysis </journal>  <a class="arxiv" href="https://projecteuclid.org/journals/bayesian-analysis/volume-16/issue-4/Multilevel-Linear-Models-Gibbs-Samplers-and-Multigrid-Decompositions-with-Discussion/10.1214/20-BA1242.full" target="_blank">journal</a>  <cat> [mcmc] </cat>  <br>  Keywords: <key>deterministic sweep Gibbs sampler, linear mixed model, multivariate AR(1), non-centered parameterization, random effects model </key> ', 
-		'P. Ernst, M. Imerman, L. Shepp and <me>Q. Zhou</me> <ao> [ao]</ao> (2021) "Fiscal stimulus as an optimal control problem." <br>  <journal>Stochastic Processes and their Applications </journal>  <a class="arxiv" href="https://www.sciencedirect.com/science/article/abs/pii/S0304414921000934" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/1410.6084" target="_blank">arXiv</a>  <cat> [stochastic control] </cat>  <br>  Keywords: <key>dividend problem, Radner-Shepp model, reflected Brownian motion, Skorokhod problem </key> ', 
-		'S. Jiang, <me> Q. Zhou </me>, X. Zhan and Q. Li (2021) "BayesSmiles: Bayesian segmentation modeling for longitudinal epidemiologoical studies." <br>  <journal>Journal of Data Science </journal>  <a class="arxiv" href="https://jds-online.org/journal/JDS/article/184/info" target="_blank">journal</a>  <a class="arxiv" href="https://www.medrxiv.org/content/10.1101/2020.10.06.20208132v3" target="_blank">medRxiv</a>  <cat> [stat methodology] </cat>  <br>  Keywords: <key>change-point detection, covid-19, Metropolis-Hastings, stochastic SIR model </key> ', 
-		'P. Ernst, G. Peskir and <me>Q. Zhou</me> <ao> [ao]</ao> (2020) "Optimal real-time detection of a drifting Brownian coordinate." <br>  <journal>Annals of Applied Probability </journal>  <a class="arxiv" href="https://projecteuclid.org/journals/annals-of-applied-probability/volume-30/issue-3/Optimal-real-time-detection-of-a-drifting-Brownian-coordinate/10.1214/19-AAP1522.full" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/1812.07163" target="_blank">arXiv</a>  <cat> [optimal stopping] </cat>  <br>  Keywords: <key>elliptic partial differential equation, free-boundary problem, non-linear Fredholm integral equation, sequential testing </key> ', 
-		'S. Peng and <me> Q. Zhou </me> <ao> [ao]</ao> (2020) "A hypothesis-testing perspective on the G-normal distribution theory." <br>  <journal>Statistics and Probability Letters </journal>  <a class="arxiv" href="https://www.sciencedirect.com/science/article/pii/S016771521930269X" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/1909.03530" target="_blank">arXiv</a>  <cat> [stochastic control] </cat>  <br>  Keywords: <key>heteroskedasticity, nonlinear expectation, nonlinear heat equation, p-hacking </key> ', 
-		'P. Ernst, L. C. G. Rogers and <me> Q. Zhou </me> <ao> [ao]</ao> (2020) "When is it best to follow the leader?" <br>  <journal>Stochastic Processes and their Applications </journal>  <a class="arxiv" href="https://www.sciencedirect.com/science/article/pii/S0304414919305770" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/1804.05479" target="_blank">arXiv</a>  <cat> [stochastic control] </cat>  <br>  Keywords: <key>local time, multi-armed bandit, optimal scanning, Tanaka SDE </key> ', 
-		'<me> Q. Zhou </me> (2019) "Asymptotics of multivariate contingency tables with fixed marginals." <br>  <journal>Journal of Statistical Planning and Inference </journal>  <a class="arxiv" href="https://www.sciencedirect.com/science/article/pii/S0378375818300363" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/1710.08903" target="_blank">arXiv</a>  <cat> [stat theory] </cat>  <br>  Keywords: <key>central limit theorem, coupon collector\'s problem, negative association, random allocation, Poisson limit, Stein-Chen method </key> ', 
-		'P. Ernst, M. Kimmel, M. Kurpas and <me> Q. Zhou </me> <ao> [ao]</ao> (2018) "Heavy-tailed distributions in branching process models of secondary cancerous tumors." <br>  <journal>Advances in Applied Probability </journal>  <a class="arxiv" href="https://www.cambridge.org/core/journals/advances-in-applied-probability/article/heavytailed-distributions-in-branching-process-models-of-secondary-cancerous-tumors/2C8D051FB99E174F5738298A73597AF8" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/1801.00982" target="_blank">arXiv</a>  <cat> [branching process] </cat>  <br>  Keywords: <key>cancer metastases, Goldie-Coldman model, infinite moment, super-exponential growth, Yule-Simon distribution </key> ', 
-		'<me> Q. Zhou </me>, P. Ernst, K. Morgan, D. Rubin and A. Zhang (2018) "Sequential rerandomization." <br>  <journal>Biometrika </journal>  <a class="arxiv" href="https://doi.org/10.1093/biomet/asy031" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/1706.04182" target="_blank">arXiv</a>  <cat> [experimental design] </cat>  <br>  Keywords: <key>average treatment effect, non-central chi-squared, randomized controlled trial (RCT), potential outcomes model </key> ', 
-		'J. T. Atkinson*, A. M. Jones*, <me> Q. Zhou </me> and J. J. Silberg (2018) "Circular permutation on profiling by deep sequencing libraries created using transposon mutagenesis." <br>  <journal>Nucleic Acids Research </journal>  <a class="arxiv" href="https://doi.org/10.1093/nar/gky255" target="_blank">journal</a>  <cat> [applied stat] [genomics] </cat>  <br>  Keywords: <key>Benjamini-Hochberg method, DESeq, Fisher\'s exact test, negative binomial </key> ', 
-		'<me> Q. Zhou </me> and Y. Guan (2018) "Fast model-fitting of Bayesian variable selection regression using the iterative complex factorization." <br>  <journal>Bayesian Analysis </journal>  <a class="arxiv" href="https://projecteuclid.org/euclid.ba/1535508388" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/1706.09888" target="_blank">arXiv</a>  <a class="arxiv" href="https://github.com/zhouquan34/fastBVSR" target="_blank">github</a>  <cat> [variable selection] [numerical linear algebra] </cat>  <br>  Keywords: <key>exchange algorithm, Gauss-Seidel method, heritability estimation, iterative linear system solver, pseudo-marginal MCMC </key> ', 
-		'<me> Q. Zhou </me> and Y. Guan (2017) "On the null distribution of Bayes factors in linear regression." <br>  <journal>Journal of the American Statistical Association </journal>  <a class="arxiv" href="http://www.tandfonline.com/doi/abs/10.1080/01621459.2017.1328361" target="_blank">journal</a>  <a class="arxiv" href="https://github.com/zhouquan34/BACH" target="_blank">github</a>  <cat> [stat theory] </cat>  <br>  Keywords: <key>Bayesian hypothesis testing, Bartlett\'s paradox, genome-wide association study, p-value, linear combination of chi-squared random variables </key> ', 
-		'P. Ernst, L. C. G. Rogers and <me> Q. Zhou </me> <ao> [ao]</ao> (2017) "The value of foresight." <br>  <journal>Stochastic Processes and their Applications </journal>  <a class="arxiv" href="http://www.sciencedirect.com/science/article/pii/S0304414917300923" target="_blank">journal</a>  <a class="arxiv" href="https://arxiv.org/abs/1601.05872" target="_blank">arXiv</a>  <a class="arxiv" href="https://github.com/zhouquan34/blb" target="_blank">github</a>  <cat> [optimal stopping] </cat>  <br>  Keywords: <key>exotic option, enlargement of filtration, lookback option, option pricing </key> ', 
-		'D. He, Q. Zhu, <me> Q. Zhou </me>, et al. (2017) "Correlation of serum MMP3 and other biomarkers with clinical  outcomes in patients with ankylosing spondylitis: A pilot study." <br>  <journal>Clinical Rheumatology </journal>  <a class="arxiv" href="https://www.ncbi.nlm.nih.gov/pubmed/28432524" target="_blank">journal</a>  <cat> [applied stat] [clinical trials] </cat> ', 
-		'B. Zou, J. Li, <me> Q. Zhou </me> and Z. Quan (2017) "MIPE: a metagenome-based community structure explorer and SSU primer evaluation tool." <br>  <journal>PLoS ONE </journal>  <a class="arxiv" href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0174609" target="_blank">journal</a>  <cat> [metagenomics] </cat> ', 
-		'<me>  Q. Zhou  </me>, L. Zhao and Y. Guan (2016) "Strong selection at MHC in Mexicans since admixture." <br>  <journal>PLoS Genetics </journal>  <a class="arxiv" href="http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005847" target="_blank">journal</a>  <cat> [stat genetics] </cat>  <br>  Keywords: <key>admixed population, expectation-maximization, genome-wide association study, local ancestry, MCMC, selection coefficient </key> ', 
-		'D. Yu, M. Gadkari, <me> Q. Zhou </me>, et al. (2015) "Postnatal epigenetic development of mouse intestinal stem cells requires DNA methylation and is guided by microbiome." <br>  <journal>Genome Biology </journal>  <a class="arxiv" href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0763-5" target="_blank">journal</a>  <cat> [genomics] </cat> ', 
-		'D. Mao*, <me> Q. Zhou* </me>, C. Chen and Z. Quan (2012) "Coverage evaluation of universal bacterial primers using the metagenomic datasets." <br>  <journal>BMC Microbiology </journal>  <a class="arxiv" href="https://bmcmicrobiol.biomedcentral.com/articles/10.1186/1471-2180-12-66" target="_blank">journal</a>  <cat> [metagenomics] </cat> ', 
-  ];
 
-  function searchPublications() {
-      const searchTerm = document.getElementById('searchBox').value.toLowerCase().trim();
-        displayPublications(publications.filter(pub =>
-            pub.toLowerCase().includes(searchTerm)
-      ));
+    // Apply all decorations to the name
+    let result = name;
+    for (const decorate of decorations) {
+      result = decorate(result);
+    }
+    return result;
+  }).join(', ');
+}
+
+function renderLinks(links) {
+  return links.map(l => 
+    `<a class="arxiv" href="${l.url}" target="_blank">${l.label}</a>`
+  ).join(' ');
+}
+
+function renderCategories(cats) {
+  return cats.map(c =>
+    `<a class="keyw">${c}</a>`
+  ).join(' ');
+}
+
+function renderPublication(pub) {
+  const authors = renderAuthors(pub.authors);
+  const links = renderLinks(pub.links);
+  const allTags = pub.categories.concat(pub.keywords);
+  const cats = renderCategories(allTags);
+
+  const note = pub.note && pub.note.trim() ? `<br><span class="note">${pub.note}</span>` : '';
+
+  return `
+    ${authors} (${pub.year}) "${pub.title}"<br>
+    <journal>${pub.venue}</journal> ${links} ${cats}${note}
+  `;
+}
+
+function displayPublications(list) {
+  const container = document.getElementById("results");
+  container.innerHTML = "";
+
+  if (!list.length) {
+    container.textContent = "No publications found.";
+    return;
   }
 
-  function showAllPublications() {
-      displayPublications(publications);
-  }
+  const ul = document.createElement("ul");
+  ul.className = "publication";
 
-  function displayPublications(filteredPublications) {
-      const resultsContainer = document.getElementById('results');
-      // Clear previous results
-      resultsContainer.innerHTML = '';
-
-      if (filteredPublications.length) {
-          // Display publications
-          const resultList = document.createElement('ul');
-          resultList.className = 'publication';
-          filteredPublications.forEach(pub => {
-              const item = document.createElement('li');
-              item.innerHTML = pub;
-              resultList.appendChild(item);
-          });
-          resultsContainer.appendChild(resultList);
-      } else {
-          // Display no results message
-          resultsContainer.textContent = 'No publications found.';
-      }
-  }
-  
-  document.getElementById('searchBox').addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-            searchPublications(); // Call the search function when Enter is pressed
-        }
+  list.forEach(pub => {
+    const li = document.createElement("li");
+    li.innerHTML = renderPublication(pub);
+    ul.appendChild(li);
   });
 
-  // Display all publications by default
-  window.onload = () => showAllPublications();
+  container.appendChild(ul);
+}
+
+function searchPublications() {
+  const q = document.getElementById("searchBox").value.toLowerCase().trim();
+
+  const filtered = publications.filter(pub =>
+    pub.title.toLowerCase().includes(q) ||
+    pub.venue.toLowerCase().includes(q) ||
+    (pub.categories && pub.categories.some(c => c.toLowerCase().includes(q))) ||
+    (pub.keywords && pub.keywords.some(k => k.toLowerCase().includes(q))) ||
+    (pub.authors && pub.authors.some(a => a.name.toLowerCase().includes(q)))
+  );
+
+  displayPublications(filtered);
+}
+
+function showAllPublications() {
+  displayPublications(publications);
+}
+
+window.onload = () => showAllPublications();
+
+document.getElementById("searchBox").addEventListener("keypress", e => {
+  if (e.key === "Enter") searchPublications();
+});
 </script>
+
 </body>
-
 </html>
-
