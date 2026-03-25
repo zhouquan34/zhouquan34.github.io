@@ -68,12 +68,13 @@ const publications = [
       "ATT estimation", 
       "constrained regression", 
       "selection consistency"
-    ]       
+    ],
+    note: "ASA SBSS Student Paper Competition Award"
   },
   {
     year: 2025, 
     title: "GS-BART: Bayesian additive regression trees with graph-split decision rules.",
-    venue: "Preprint",
+    venue: "Journal of the Americal Statistical Association (accepted)",
     authors: [
       { name: "S. He"},
       { name: "H. Sang" },
@@ -112,7 +113,7 @@ const publications = [
   {
     year: 2025,
     title: "A quickest detection problem with false negatives.",
-    venue: "Preprint",
+    venue: "Stochastic Processes and their Applications (accepted)",
     authors: [
       { name: "T. De Angelis" },
       { name: "J. Garg", student: true },
