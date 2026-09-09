@@ -1,5 +1,36 @@
 const publications = [
   {
+    draft: false,
+    year: 2026,
+    title: "Markov Chain CLTs: Resolving Open Problems",
+    venue: "Preprint",
+    authors: [
+      { name: "A. Brown" },
+      { name: "J. Rosenthal" },
+      { name: "Q. Zhou", me: true, corresponding: true, ao: true }
+    ],
+    links: [
+      { label: "arXiv", url: "https://arxiv.org/abs/2609.07819" }
+    ],
+    categories: ["MCMC", "stochastic processes", "asymptotics"],
+    keywords: []
+  },
+  {
+    draft: false,
+    year: 2026,
+    title: "Chernoff's Density is Strongly Log-Concave",
+    venue: "Preprint",
+    authors: [
+      { name: "X. Zhang" },
+      { name: "Q. Zhou", me: true, corresponding: true, ao: true },
+    ],
+    links: [
+      { label: "arXiv", url: "https://arxiv.org/abs/2607.18619" }
+    ],
+    categories: [ ],
+    keywords: [ ]
+  }, 
+  {
   year: 2025,
   title: "Polynomial mixing times of simulated tempering for mixture targets by conductance decomposition",
   venue: "Preprint",
@@ -25,7 +56,7 @@ const publications = [
     { name: "Y. Yang", student: true},
     { name: "A. Ben Bouazza", student: true},
     { name: "X. Dong" },
-    { name: "Q. Zhou", me: true }
+    { name: "Q. Zhou", me: true, corresponding: true }
   ],
   links: [
     { label: "arXiv", url: "https://arxiv.org/abs/2510.23550" }
@@ -50,7 +81,12 @@ const publications = [
   keywords: [
     "drift condition", 
     "importance sampling",
-  ]
+  ],
+    updatedPdf: {
+      text: "Here is an updated version with R^d and spectral gap results:",
+      label: "pdf",
+      url: "papers/UnifErgodic.pdf"
+    }
   }, 
   {
     year: 2025, 
@@ -58,7 +94,7 @@ const publications = [
     venue: "Preprint",
     authors: [
       { name: "Y. Xu", student: true},
-      { name: "Q. Zhou", me: true }
+      { name: "Q. Zhou", me: true, corresponding: true }
     ],
     links: [
       { label: "arXiv", url: "https://arxiv.org/abs/2503.06454" }
@@ -74,7 +110,7 @@ const publications = [
   {
     year: 2025, 
     title: "GS-BART: Bayesian additive regression trees with graph-split decision rules.",
-    venue: "Journal of the Americal Statistical Association (accepted)",
+    venue: "Journal of the American Statistical Association",
     authors: [
       { name: "S. He"},
       { name: "H. Sang" },
@@ -97,7 +133,7 @@ const publications = [
     authors: [
       { name: "G. Li", student: true },
       { name: "A. Smith" },
-      { name: "Q. Zhou", me: true }
+      { name: "Q. Zhou", me: true, corresponding: true }
     ],
     links: [
       { label: "arXiv", url: "https://arxiv.org/abs/2304.06251" }
@@ -113,11 +149,11 @@ const publications = [
   {
     year: 2025,
     title: "A quickest detection problem with false negatives.",
-    venue: "Stochastic Processes and their Applications (accepted)",
+    venue: "Stochastic Processes and their Applications",
     authors: [
       { name: "T. De Angelis" },
       { name: "J. Garg", student: true },
-      { name: "Q. Zhou", me: true, ao: true }
+      { name: "Q. Zhou", me: true, ao: true, corresponding: true }
     ],
     links: [
       { label: "arXiv", url: "https://arxiv.org/abs/2210.01844" }
@@ -154,7 +190,7 @@ const publications = [
     authors: [
       { name: "J. Garg", student: true },
       { name: "K. Balasubramanian" },
-      { name: "Q. Zhou", me: true }  
+      { name: "Q. Zhou", me: true, corresponding: true }  
     ],
     links: [
        {label: "arXiv", url: "https://arxiv.org/abs/2505.15059"} 
@@ -171,7 +207,7 @@ const publications = [
     venue: "Bernoulli",
     authors: [
       { name: "H. Chang", student: true },
-      { name: "Q. Zhou", me: true }
+      { name: "Q. Zhou", me: true, corresponding: true }
     ],
     links: [
       { label: "arXiv", url: "https://arxiv.org/abs/2404.03867" }
@@ -191,7 +227,7 @@ const publications = [
     authors: [
       { name: "J. Garg", student: true },
       { name: "X. Zhang" },
-      { name: "Q. Zhou", me: true }
+      { name: "Q. Zhou", me: true, corresponding: true }
     ],
     links: [
       { label: "proceedings", url:"https://proceedings.mlr.press/v238/garg24a.html"},
@@ -228,7 +264,7 @@ const publications = [
     authors: [
       { name: "H. Chang", student: true },
       { name: "J. Cai" },
-      { name: "Q. Zhou", me: true }
+      { name: "Q. Zhou", me: true, corresponding: true }
     ],
     links: [
       { label: "journal", url: "https://academic.oup.com/biomet/advance-article-abstract/doi/10.1093/biomet/asad052/7261492?redirectedFrom=fulltext" },
@@ -246,7 +282,7 @@ const publications = [
     venue: "Journal of Computational and Graphical Statistics",
     authors: [
       { name: "G. Li", student: true },
-      { name: "Q. Zhou", me: true }
+      { name: "Q. Zhou", me: true, corresponding: true }
     ],
     links: [
       { label: "journal", url: "https://www.tandfonline.com/doi/abs/10.1080/10618600.2023.2252023" },
@@ -347,7 +383,7 @@ const publications = [
     title: "Discussion on \"Multilevel linear models, Gibbs samplers and multigrid decompositions\" by Giacomo Zanella and Gareth Roberts.",
     venue: "Bayesian Analysis",
     authors: [
-      { name: "Q. Zhou", me: true },
+      { name: "Q. Zhou", me: true, corresponding: true },
       { name: "S. Zhou", ao: true }
     ],
     links: [
@@ -422,7 +458,7 @@ const publications = [
     venue: "Statistics and Probability Letters",
     authors: [
       { name: "S. Peng" },
-      { name: "Q. Zhou", me: true, ao: true }
+      { name: "Q. Zhou", me: true, ao: true, corresponding: true }
     ],
     links: [
       { label: "journal", url: "https://www.sciencedirect.com/science/article/pii/S016771521930269X" },
@@ -623,7 +659,7 @@ const publications = [
     venue: "BMC Microbiology",
     authors: [
       { name: "D. Mao", equal: true },
-      { name: "Q. Zhou", me: true, equal: true },
+      { name: "Q. Zhou", me: true, equal: true, firstAuthor: true },
       { name: "C. Chen" },
       { name: "Z. Quan" }
     ],
