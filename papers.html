@@ -41,6 +41,14 @@
     font-family: monospace;
   }
   .note { font-style: italic; color: rgba(0, 136, 255, 0.961) }
+
+  .updated-version {
+    margin-top: 2px;
+  }
+  .updated-version a {
+    color: maroon;
+    text-decoration: underline;
+  }
   
   journal {
     color: navy;
@@ -94,7 +102,7 @@
 <!-- MAIN CONTENT -->
 <div class="w3-row" style="max-width:1600px;margin-top:80px;margin-left:30px;">
 
-  Below is a list of selected publications and preprints (last update: Nov 2025)
+  Below is a list of selected publications and preprints (last update: Sep 2026)
   <br><br>
 
   Search publications by area or keyword (e.g. "mcmc", "optimal stopping", "graphical model") <br> 
@@ -107,7 +115,7 @@
     <ao>[ao]</ao>: alphabetical ordering of authors <br>
     <stu>name</stu>: graduate students supervised by me <br>
     name*: equal contribution <br>
-    <cat>[area]</cat>: main areas of the work
+    <me>Q. Zhou</me>: corresponding/first author <br>
   </div>
 
   <div id="results" style="margin-top:20px;"></div>
@@ -136,24 +144,21 @@ function toggleNav() {
 /* RENDERING LOGIC */
 
 function renderAuthors(authors) {
-  return authors.map(a => {
-    let name = a.name;
-    let decorations = [];
+  return authors.map((a, index) => {
+    let result = a.name;
 
-    if (a.me)      decorations.push(open => `<me>${open}</me>`, close => close);
-    if (a.student) decorations.push(open => `<stu>${open}</stu>`, close => close);
-    if (a.equal)   decorations.push(open => `${open}*`, close => close);
-    if (a.ao)      decorations.push(open => `${open} <ao>[ao]</ao>`, close => close);
+    if (a.student) result = `<stu>${result}</stu>`;
+    if (a.equal) result += '*';
 
-    if (decorations.length === 0) {
-      return name;
+    // The first listed author is detected automatically. Use firstAuthor for
+    // co-first authors who are not listed first, and corresponding for the
+    // corresponding author.
+    if (a.me && (index === 0 || a.firstAuthor || a.corresponding)) {
+      result = `<me>${result}</me>`;
     }
 
-    // Apply all decorations to the name
-    let result = name;
-    for (const decorate of decorations) {
-      result = decorate(result);
-    }
+    if (a.ao) result += ' <ao>[ao]</ao>';
+
     return result;
   }).join(', ');
 }
@@ -170,17 +175,31 @@ function renderCategories(cats) {
   ).join(' ');
 }
 
+function renderUpdatedVersion(updatedPdf) {
+  if (!updatedPdf || !updatedPdf.url || !updatedPdf.url.trim()) return '';
+
+  const text = updatedPdf.text || 'Here is an updated version of the paper:';
+  const label = updatedPdf.label || 'pdf';
+  return `
+    <div class="updated-version">
+      ${text}
+      <a href="${updatedPdf.url}" target="_blank" rel="noopener">[${label}]</a>
+    </div>
+  `;
+}
+
 function renderPublication(pub) {
   const authors = renderAuthors(pub.authors);
-  const links = renderLinks(pub.links);
-  const allTags = pub.categories.concat(pub.keywords);
+  const links = renderLinks(pub.links || []);
+  const allTags = (pub.categories || []).concat(pub.keywords || []);
   const cats = renderCategories(allTags);
 
   const note = pub.note && pub.note.trim() ? `<br><span class="note">${pub.note}</span>` : '';
+  const updatedVersion = renderUpdatedVersion(pub.updatedPdf);
 
   return `
     ${authors} (${pub.year}) "${pub.title}"<br>
-    <journal>${pub.venue}</journal> ${links} ${cats}${note}
+    <journal>${pub.venue}</journal> ${links} ${cats}${note}${updatedVersion}
   `;
 }
 
@@ -209,18 +228,20 @@ function searchPublications() {
   const q = document.getElementById("searchBox").value.toLowerCase().trim();
 
   const filtered = publications.filter(pub =>
-    pub.title.toLowerCase().includes(q) ||
-    pub.venue.toLowerCase().includes(q) ||
-    (pub.categories && pub.categories.some(c => c.toLowerCase().includes(q))) ||
-    (pub.keywords && pub.keywords.some(k => k.toLowerCase().includes(q))) ||
-    (pub.authors && pub.authors.some(a => a.name.toLowerCase().includes(q)))
+    !pub.draft && (
+      pub.title.toLowerCase().includes(q) ||
+      pub.venue.toLowerCase().includes(q) ||
+      (pub.categories && pub.categories.some(c => c.toLowerCase().includes(q))) ||
+      (pub.keywords && pub.keywords.some(k => k.toLowerCase().includes(q))) ||
+      (pub.authors && pub.authors.some(a => a.name.toLowerCase().includes(q)))
+    )
   );
 
   displayPublications(filtered);
 }
 
 function showAllPublications() {
-  displayPublications(publications);
+  displayPublications(publications.filter(pub => !pub.draft));
 }
 
 window.onload = () => showAllPublications();
