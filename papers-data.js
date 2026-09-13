@@ -12,7 +12,7 @@ const publications = [
     links: [
       { label: "arXiv", url: "https://arxiv.org/abs/2609.07819" }
     ],
-    categories: ["MCMC", "stochastic processes", "asymptotics"],
+    categories: ["GPT-5.6", "MCMC", "stochastic processes", "asymptotics"],
     keywords: []
   },
   {
@@ -27,7 +27,7 @@ const publications = [
     links: [
       { label: "arXiv", url: "https://arxiv.org/abs/2607.18619" }
     ],
-    categories: [ ],
+    categories: ["GPT-5.6" ],
     keywords: [ ]
   }, 
   {
