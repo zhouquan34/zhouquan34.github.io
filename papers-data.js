@@ -403,7 +403,7 @@ const publications = [
       { name: "P. Ernst" },
       { name: "M. Imerman" },
       { name: "L. Shepp" },
-      { name: "Q. Zhou", me: true, ao: true }
+      { name: "Q. Zhou", me: true, ao: true, corresponding: true }
     ],
     links: [
       { label: "journal", url: "https://www.sciencedirect.com/science/article/abs/pii/S0304414921000934" },
